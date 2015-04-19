@@ -6,6 +6,18 @@
 var should = require('chai').should(),
     cal = require('..');
 
+describe('Compound Interest', function(){
+    var ci = cal['Compound Interest'];
+    it('FV with positional', function(){
+        ci.FV(100, 100, 2).should.equal(400);
+    })
+    it('FV with object arg', function(){
+        ci.FV({pv: 100, k: 100, n: 2}).should.equal(400);
+    })
+
+})
+
+// ============== Old Interface, old tests ========================
 describe('FinanceJS', function() {
 
   it('should compute PV', function() {

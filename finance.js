@@ -32,8 +32,97 @@ var current = (function () {
     };
     return me;
 }()); // .noConflict Pattern ends
-
 // Build up "current"
+
+/*
+  ================ New Interface =====================================
+
+ 1. Based on http://www.ultimatecalculators.com, formulas are arranged in
+ sections.
+
+ 2. Lower cases for variables while all-capitalized words for functions.
+
+ 3. All sections contain a "doc" property, mainly used for interactive
+ documentation. It list all predefined names for variables used in this section.
+
+ 4. All functions accept two types of arguments: positional and single object
+ argument with properties same as parameters.
+
+
+ TODO
+
+ 1. Have memoization (possibly with "underscore") for functions. Also use this
+ cache to build up history.
+
+*/
+
+function ArgumentError(args){
+    this.name = "ArgumentError";
+    this.message = "ERROR: Arguments missing or invalid!";
+    this.args = args;
+}
+
+// Will use Function.prototype.toString to extract an array of "arg1", "arg2",
+// "arg3" and etc from func, in its exact order!!! Return a function that
+// accepts the same prositional arguments as well as an object one.
+//
+function funcgen(func){
+    var params = Function.prototype.toString.call(func)
+        .match(/function[^\(]*\((.*?)\)\s*{/)[1].split(", ");
+
+    return function(generated_args){
+        var args_array = []
+        if (arguments.length === 1){
+            var args = arguments[0];
+            args_array = params.map(function(par){
+                if (! args[par])
+                    throw new ArgumentError(arguments);
+                return args[par];
+            })
+        }
+        else if (arguments.length === params.length ){
+            args_array = arguments;
+        }
+        else {
+            throw "Error: not enough arguments";
+        }
+
+        return func.apply(this, args_array);
+    };
+}
+
+// simple helper function to create doc function
+function docgen(docarr){
+    return function(){
+        console.log( docarr.join('\n') )
+    };
+}
+
+// http://www.ultimatecalculators.com/compound_interest_calculator.html
+current["Compound Interest"] = {
+    _FV: function(pv, k, n){
+        k = k / 100;
+        return pv * Math.pow((1 + k), n);
+    },
+    doc: docgen(
+    [
+    "Compound Interest is the interest generated on a principal amount that compounds, that is that interest in one period will be added to principal and interest in the next period will be generated on the now increased principal amount.",
+    "* Varables:",
+    "  FV = Future value of the principal after compound interest has been applied",
+    "  PV = Present value of the principal before compound interest has been applied",
+    "  K = The interest rate charged for a compounding period",
+    "  N = The number of compounding periods",
+    "  I = The amount of interest charged to the principal over the investment time frame"
+    ]),
+};
+
+(function(){
+    this.FV = funcgen(this._FV);
+}).call(current["Compound Interest"]);
+
+
+
+// ==================  Old Interface  =============================
 // Present Value (PV)
 current.PV = function (rate, cf1) {
   var rate = rate/100, pv;

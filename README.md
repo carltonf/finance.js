@@ -33,11 +33,12 @@ This project is [hosted on GitHub](https://github.com/essamjoubori/finance.js). 
 ### Example Usage
 
 ```js
-  var finance = require('financejs');
+  // to calculate formulas related to compound interest
+  var ci = require('financejs')["Compound Inerest"];
   
-  // To calculate Amortization
-  finance.AM(20000, 7.5, 5, 0);
-  // => 400.76
+  ci.FV(100, 100, 2);
+  // or
+  ci.FV({pv: 100, k: 100, n: 2});
 ```
 To see all available calculations and their usage, visit [financejs.org](http://financejs.org).
 
