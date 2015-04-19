@@ -33,8 +33,7 @@ This project is [hosted on GitHub](https://github.com/essamjoubori/finance.js). 
 ### Example Usage
 
 ```js
-  var Finance = require('financejs');
-  var finance = new Finance();
+  var finance = require('financejs');
   
   // To calculate Amortization
   finance.AM(20000, 7.5, 5, 0);
