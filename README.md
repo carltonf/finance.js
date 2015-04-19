@@ -1,4 +1,16 @@
-[![Build Status](https://travis-ci.org/essamjoubori/finance.js.png)](https://travis-ci.org/essamjoubori/finance.js)
+[![Build Status](https://travis-ci.org/carltonf/finance.js.svg)](https://travis-ci.org/carltonf/finance.js)
+
+
+Fork Notes
+==========
+1. I am taking some Finance course, this project serves both as nodejs and
+Finance practices.
+2. I anticipate a lot of changes, so I might well start my own Finance
+   Javascript library in the future.
+
+
+----------------------------------------------------------------
+
 Finance.js
 ==========
 

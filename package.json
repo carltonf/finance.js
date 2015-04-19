@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/essamjoubori/finance.js.git"
+    "url": "https://github.com/carltonf/finance.js.git"
   },
   "keywords": [
     "finance",
@@ -17,9 +17,16 @@
     "finance.js"
   ],
   "author": "Essam Al Joubori <essam.joubori@gmail.com> (http://essam.io)",
+  "contributors": [
+    {
+      "name" : "Carl Xiong",
+      "email": "xiongc05@gmail.com",
+      "url"  : "http://carltonf.github.io"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/essamjoubori/finance.js/issues"
+    "url": "https://github.com/carltonf/finance.js/issues"
   },
   "homepage": "https://financejs.org",
   "devDependencies": {
